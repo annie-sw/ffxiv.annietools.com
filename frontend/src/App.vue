@@ -1,16 +1,22 @@
 <template>
   <div id="app" v-if="initialized">
+    <AppHeader />
+
     <nav>
       <router-link to="/">Index</router-link>
-      <router-link to="/WeatherForecast">WeatherForecast</router-link>
-      <router-link to="/Timeline">Timeline</router-link>
+      <router-link to="/WeatherForecast">Weather Forecast</router-link>
+      <router-link to="/MiniCactpot">Mini Cactpot Solver</router-link>
     </nav>
     <router-view />
+
+    <AppFooter />
   </div>
 </template>
 
 <script>
 import api from '@/api'
+import AppHeader from '@/components/AppHeader'
+import AppFooter from '@/components/AppFooter'
 
 const loadData = async (completed, receivedData, receivedText) => {
   if (!receivedData) {
@@ -34,6 +40,11 @@ const loadData = async (completed, receivedData, receivedText) => {
 
 export default {
   name: 'App',
+
+  components: {
+    AppHeader,
+    AppFooter
+  },
 
   data () {
     return {
