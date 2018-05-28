@@ -1,0 +1,25 @@
+namespace Eorzea;
+
+table WeatherRate {
+	weathers: [uint8];
+	rates: [uint8];
+}
+
+table WeatherMap {
+	region: uint8;
+	place: uint8;
+	rate: WeatherRate;
+}
+
+table DB {
+	weatherMaps: [WeatherMap];
+}
+
+/* root_type DB; */
+
+table TextDB {
+	placeNames: [string];
+	weatherNames: [string];
+}
+
+/* root_type TextDB; */
