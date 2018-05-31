@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/pages/Index'
-import MiniCactpot from '@/pages/MiniCactpot/MiniCactpot'
+import FishingSpots from '@/pages/FishingSpots'
 import WeatherForecast from '@/pages/WeatherForecast'
+import MiniCactpot from '@/pages/MiniCactpot/MiniCactpot'
 // import Timeline from '@/pages/Timeline'
 
 Vue.use(Router)
@@ -13,6 +14,11 @@ export default new Router({
       path: '/',
       name: 'Index',
       component: Index
+    },
+    {
+      path: '/FishingSpots',
+      name: 'FishingSpots',
+      component: FishingSpots
     },
     {
       path: '/WeatherForecast',

@@ -19,8 +19,23 @@ class TextDB(object):
         self._tab = flatbuffers.table.Table(buf, pos)
 
     # TextDB
-    def PlaceNames(self, j):
+    def ItemNames(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # TextDB
+    def ItemNamesLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # TextDB
+    def PlaceNames(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -28,14 +43,14 @@ class TextDB(object):
 
     # TextDB
     def PlaceNamesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # TextDB
     def WeatherNames(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -43,14 +58,16 @@ class TextDB(object):
 
     # TextDB
     def WeatherNamesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-def TextDBStart(builder): builder.StartObject(2)
-def TextDBAddPlaceNames(builder, placeNames): builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(placeNames), 0)
+def TextDBStart(builder): builder.StartObject(3)
+def TextDBAddItemNames(builder, itemNames): builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(itemNames), 0)
+def TextDBStartItemNamesVector(builder, numElems): return builder.StartVector(4, numElems, 4)
+def TextDBAddPlaceNames(builder, placeNames): builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(placeNames), 0)
 def TextDBStartPlaceNamesVector(builder, numElems): return builder.StartVector(4, numElems, 4)
-def TextDBAddWeatherNames(builder, weatherNames): builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(weatherNames), 0)
+def TextDBAddWeatherNames(builder, weatherNames): builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(weatherNames), 0)
 def TextDBStartWeatherNamesVector(builder, numElems): return builder.StartVector(4, numElems, 4)
 def TextDBEnd(builder): return builder.EndObject()

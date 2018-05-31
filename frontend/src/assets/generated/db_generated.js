@@ -268,6 +268,283 @@ Eorzea.WeatherMap.endWeatherMap = function(builder) {
 /**
  * @constructor
  */
+Eorzea.FishingSpot = function() {
+  /**
+   * @type {flatbuffers.ByteBuffer}
+   */
+  this.bb = null;
+
+  /**
+   * @type {number}
+   */
+  this.bb_pos = 0;
+};
+
+/**
+ * @param {number} i
+ * @param {flatbuffers.ByteBuffer} bb
+ * @returns {Eorzea.FishingSpot}
+ */
+Eorzea.FishingSpot.prototype.__init = function(i, bb) {
+  this.bb_pos = i;
+  this.bb = bb;
+  return this;
+};
+
+/**
+ * @param {flatbuffers.ByteBuffer} bb
+ * @param {Eorzea.FishingSpot=} obj
+ * @returns {Eorzea.FishingSpot}
+ */
+Eorzea.FishingSpot.getRootAsFishingSpot = function(bb, obj) {
+  return (obj || new Eorzea.FishingSpot).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+};
+
+/**
+ * @returns {number}
+ */
+Eorzea.FishingSpot.prototype.x = function() {
+  var offset = this.bb.__offset(this.bb_pos, 4);
+  return offset ? this.bb.readUint16(this.bb_pos + offset) : 0;
+};
+
+/**
+ * @returns {number}
+ */
+Eorzea.FishingSpot.prototype.z = function() {
+  var offset = this.bb.__offset(this.bb_pos, 6);
+  return offset ? this.bb.readUint16(this.bb_pos + offset) : 0;
+};
+
+/**
+ * @returns {number}
+ */
+Eorzea.FishingSpot.prototype.radius = function() {
+  var offset = this.bb.__offset(this.bb_pos, 8);
+  return offset ? this.bb.readUint16(this.bb_pos + offset) : 0;
+};
+
+/**
+ * @returns {number}
+ */
+Eorzea.FishingSpot.prototype.spotId = function() {
+  var offset = this.bb.__offset(this.bb_pos, 10);
+  return offset ? this.bb.readUint8(this.bb_pos + offset) : 0;
+};
+
+/**
+ * @returns {number}
+ */
+Eorzea.FishingSpot.prototype.regionId = function() {
+  var offset = this.bb.__offset(this.bb_pos, 12);
+  return offset ? this.bb.readUint8(this.bb_pos + offset) : 0;
+};
+
+/**
+ * @returns {number}
+ */
+Eorzea.FishingSpot.prototype.placeId = function() {
+  var offset = this.bb.__offset(this.bb_pos, 14);
+  return offset ? this.bb.readUint8(this.bb_pos + offset) : 0;
+};
+
+/**
+ * @returns {number}
+ */
+Eorzea.FishingSpot.prototype.spotCategory = function() {
+  var offset = this.bb.__offset(this.bb_pos, 16);
+  return offset ? this.bb.readUint8(this.bb_pos + offset) : 0;
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ */
+Eorzea.FishingSpot.startFishingSpot = function(builder) {
+  builder.startObject(7);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {number} x
+ */
+Eorzea.FishingSpot.addX = function(builder, x) {
+  builder.addFieldInt16(0, x, 0);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {number} z
+ */
+Eorzea.FishingSpot.addZ = function(builder, z) {
+  builder.addFieldInt16(1, z, 0);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {number} radius
+ */
+Eorzea.FishingSpot.addRadius = function(builder, radius) {
+  builder.addFieldInt16(2, radius, 0);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {number} spotId
+ */
+Eorzea.FishingSpot.addSpotId = function(builder, spotId) {
+  builder.addFieldInt8(3, spotId, 0);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {number} regionId
+ */
+Eorzea.FishingSpot.addRegionId = function(builder, regionId) {
+  builder.addFieldInt8(4, regionId, 0);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {number} placeId
+ */
+Eorzea.FishingSpot.addPlaceId = function(builder, placeId) {
+  builder.addFieldInt8(5, placeId, 0);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {number} spotCategory
+ */
+Eorzea.FishingSpot.addSpotCategory = function(builder, spotCategory) {
+  builder.addFieldInt8(6, spotCategory, 0);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @returns {flatbuffers.Offset}
+ */
+Eorzea.FishingSpot.endFishingSpot = function(builder) {
+  var offset = builder.endObject();
+  return offset;
+};
+
+/**
+ * @constructor
+ */
+Eorzea.FishingItem = function() {
+  /**
+   * @type {flatbuffers.ByteBuffer}
+   */
+  this.bb = null;
+
+  /**
+   * @type {number}
+   */
+  this.bb_pos = 0;
+};
+
+/**
+ * @param {number} i
+ * @param {flatbuffers.ByteBuffer} bb
+ * @returns {Eorzea.FishingItem}
+ */
+Eorzea.FishingItem.prototype.__init = function(i, bb) {
+  this.bb_pos = i;
+  this.bb = bb;
+  return this;
+};
+
+/**
+ * @param {flatbuffers.ByteBuffer} bb
+ * @param {Eorzea.FishingItem=} obj
+ * @returns {Eorzea.FishingItem}
+ */
+Eorzea.FishingItem.getRootAsFishingItem = function(bb, obj) {
+  return (obj || new Eorzea.FishingItem).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+};
+
+/**
+ * @returns {number}
+ */
+Eorzea.FishingItem.prototype.itemId = function() {
+  var offset = this.bb.__offset(this.bb_pos, 4);
+  return offset ? this.bb.readUint16(this.bb_pos + offset) : 0;
+};
+
+/**
+ * @param {number} index
+ * @param {Eorzea.FishingSpot=} obj
+ * @returns {Eorzea.FishingSpot}
+ */
+Eorzea.FishingItem.prototype.spots = function(index, obj) {
+  var offset = this.bb.__offset(this.bb_pos, 6);
+  return offset ? (obj || new Eorzea.FishingSpot).__init(this.bb.__indirect(this.bb.__vector(this.bb_pos + offset) + index * 4), this.bb) : null;
+};
+
+/**
+ * @returns {number}
+ */
+Eorzea.FishingItem.prototype.spotsLength = function() {
+  var offset = this.bb.__offset(this.bb_pos, 6);
+  return offset ? this.bb.__vector_len(this.bb_pos + offset) : 0;
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ */
+Eorzea.FishingItem.startFishingItem = function(builder) {
+  builder.startObject(2);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {number} itemId
+ */
+Eorzea.FishingItem.addItemId = function(builder, itemId) {
+  builder.addFieldInt16(0, itemId, 0);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {flatbuffers.Offset} spotsOffset
+ */
+Eorzea.FishingItem.addSpots = function(builder, spotsOffset) {
+  builder.addFieldOffset(1, spotsOffset, 0);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {Array.<flatbuffers.Offset>} data
+ * @returns {flatbuffers.Offset}
+ */
+Eorzea.FishingItem.createSpotsVector = function(builder, data) {
+  builder.startVector(4, data.length, 4);
+  for (var i = data.length - 1; i >= 0; i--) {
+    builder.addOffset(data[i]);
+  }
+  return builder.endVector();
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {number} numElems
+ */
+Eorzea.FishingItem.startSpotsVector = function(builder, numElems) {
+  builder.startVector(4, numElems, 4);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @returns {flatbuffers.Offset}
+ */
+Eorzea.FishingItem.endFishingItem = function(builder) {
+  var offset = builder.endObject();
+  return offset;
+};
+
+/**
+ * @constructor
+ */
 Eorzea.DB = function() {
   /**
    * @type {flatbuffers.ByteBuffer}
@@ -302,11 +579,29 @@ Eorzea.DB.getRootAsDB = function(bb, obj) {
 
 /**
  * @param {number} index
+ * @param {Eorzea.FishingItem=} obj
+ * @returns {Eorzea.FishingItem}
+ */
+Eorzea.DB.prototype.fishingItems = function(index, obj) {
+  var offset = this.bb.__offset(this.bb_pos, 4);
+  return offset ? (obj || new Eorzea.FishingItem).__init(this.bb.__indirect(this.bb.__vector(this.bb_pos + offset) + index * 4), this.bb) : null;
+};
+
+/**
+ * @returns {number}
+ */
+Eorzea.DB.prototype.fishingItemsLength = function() {
+  var offset = this.bb.__offset(this.bb_pos, 4);
+  return offset ? this.bb.__vector_len(this.bb_pos + offset) : 0;
+};
+
+/**
+ * @param {number} index
  * @param {Eorzea.WeatherMap=} obj
  * @returns {Eorzea.WeatherMap}
  */
 Eorzea.DB.prototype.weatherMaps = function(index, obj) {
-  var offset = this.bb.__offset(this.bb_pos, 4);
+  var offset = this.bb.__offset(this.bb_pos, 6);
   return offset ? (obj || new Eorzea.WeatherMap).__init(this.bb.__indirect(this.bb.__vector(this.bb_pos + offset) + index * 4), this.bb) : null;
 };
 
@@ -314,7 +609,7 @@ Eorzea.DB.prototype.weatherMaps = function(index, obj) {
  * @returns {number}
  */
 Eorzea.DB.prototype.weatherMapsLength = function() {
-  var offset = this.bb.__offset(this.bb_pos, 4);
+  var offset = this.bb.__offset(this.bb_pos, 6);
   return offset ? this.bb.__vector_len(this.bb_pos + offset) : 0;
 };
 
@@ -322,7 +617,36 @@ Eorzea.DB.prototype.weatherMapsLength = function() {
  * @param {flatbuffers.Builder} builder
  */
 Eorzea.DB.startDB = function(builder) {
-  builder.startObject(1);
+  builder.startObject(2);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {flatbuffers.Offset} fishingItemsOffset
+ */
+Eorzea.DB.addFishingItems = function(builder, fishingItemsOffset) {
+  builder.addFieldOffset(0, fishingItemsOffset, 0);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {Array.<flatbuffers.Offset>} data
+ * @returns {flatbuffers.Offset}
+ */
+Eorzea.DB.createFishingItemsVector = function(builder, data) {
+  builder.startVector(4, data.length, 4);
+  for (var i = data.length - 1; i >= 0; i--) {
+    builder.addOffset(data[i]);
+  }
+  return builder.endVector();
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {number} numElems
+ */
+Eorzea.DB.startFishingItemsVector = function(builder, numElems) {
+  builder.startVector(4, numElems, 4);
 };
 
 /**
@@ -330,7 +654,7 @@ Eorzea.DB.startDB = function(builder) {
  * @param {flatbuffers.Offset} weatherMapsOffset
  */
 Eorzea.DB.addWeatherMaps = function(builder, weatherMapsOffset) {
-  builder.addFieldOffset(0, weatherMapsOffset, 0);
+  builder.addFieldOffset(1, weatherMapsOffset, 0);
 };
 
 /**
@@ -403,7 +727,7 @@ Eorzea.TextDB.getRootAsTextDB = function(bb, obj) {
  * @param {flatbuffers.Encoding=} optionalEncoding
  * @returns {string|Uint8Array}
  */
-Eorzea.TextDB.prototype.placeNames = function(index, optionalEncoding) {
+Eorzea.TextDB.prototype.itemNames = function(index, optionalEncoding) {
   var offset = this.bb.__offset(this.bb_pos, 4);
   return offset ? this.bb.__string(this.bb.__vector(this.bb_pos + offset) + index * 4, optionalEncoding) : null;
 };
@@ -411,7 +735,7 @@ Eorzea.TextDB.prototype.placeNames = function(index, optionalEncoding) {
 /**
  * @returns {number}
  */
-Eorzea.TextDB.prototype.placeNamesLength = function() {
+Eorzea.TextDB.prototype.itemNamesLength = function() {
   var offset = this.bb.__offset(this.bb_pos, 4);
   return offset ? this.bb.__vector_len(this.bb_pos + offset) : 0;
 };
@@ -421,7 +745,7 @@ Eorzea.TextDB.prototype.placeNamesLength = function() {
  * @param {flatbuffers.Encoding=} optionalEncoding
  * @returns {string|Uint8Array}
  */
-Eorzea.TextDB.prototype.weatherNames = function(index, optionalEncoding) {
+Eorzea.TextDB.prototype.placeNames = function(index, optionalEncoding) {
   var offset = this.bb.__offset(this.bb_pos, 6);
   return offset ? this.bb.__string(this.bb.__vector(this.bb_pos + offset) + index * 4, optionalEncoding) : null;
 };
@@ -429,8 +753,26 @@ Eorzea.TextDB.prototype.weatherNames = function(index, optionalEncoding) {
 /**
  * @returns {number}
  */
-Eorzea.TextDB.prototype.weatherNamesLength = function() {
+Eorzea.TextDB.prototype.placeNamesLength = function() {
   var offset = this.bb.__offset(this.bb_pos, 6);
+  return offset ? this.bb.__vector_len(this.bb_pos + offset) : 0;
+};
+
+/**
+ * @param {number} index
+ * @param {flatbuffers.Encoding=} optionalEncoding
+ * @returns {string|Uint8Array}
+ */
+Eorzea.TextDB.prototype.weatherNames = function(index, optionalEncoding) {
+  var offset = this.bb.__offset(this.bb_pos, 8);
+  return offset ? this.bb.__string(this.bb.__vector(this.bb_pos + offset) + index * 4, optionalEncoding) : null;
+};
+
+/**
+ * @returns {number}
+ */
+Eorzea.TextDB.prototype.weatherNamesLength = function() {
+  var offset = this.bb.__offset(this.bb_pos, 8);
   return offset ? this.bb.__vector_len(this.bb_pos + offset) : 0;
 };
 
@@ -438,7 +780,36 @@ Eorzea.TextDB.prototype.weatherNamesLength = function() {
  * @param {flatbuffers.Builder} builder
  */
 Eorzea.TextDB.startTextDB = function(builder) {
-  builder.startObject(2);
+  builder.startObject(3);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {flatbuffers.Offset} itemNamesOffset
+ */
+Eorzea.TextDB.addItemNames = function(builder, itemNamesOffset) {
+  builder.addFieldOffset(0, itemNamesOffset, 0);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {Array.<flatbuffers.Offset>} data
+ * @returns {flatbuffers.Offset}
+ */
+Eorzea.TextDB.createItemNamesVector = function(builder, data) {
+  builder.startVector(4, data.length, 4);
+  for (var i = data.length - 1; i >= 0; i--) {
+    builder.addOffset(data[i]);
+  }
+  return builder.endVector();
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {number} numElems
+ */
+Eorzea.TextDB.startItemNamesVector = function(builder, numElems) {
+  builder.startVector(4, numElems, 4);
 };
 
 /**
@@ -446,7 +817,7 @@ Eorzea.TextDB.startTextDB = function(builder) {
  * @param {flatbuffers.Offset} placeNamesOffset
  */
 Eorzea.TextDB.addPlaceNames = function(builder, placeNamesOffset) {
-  builder.addFieldOffset(0, placeNamesOffset, 0);
+  builder.addFieldOffset(1, placeNamesOffset, 0);
 };
 
 /**
@@ -475,7 +846,7 @@ Eorzea.TextDB.startPlaceNamesVector = function(builder, numElems) {
  * @param {flatbuffers.Offset} weatherNamesOffset
  */
 Eorzea.TextDB.addWeatherNames = function(builder, weatherNamesOffset) {
-  builder.addFieldOffset(1, weatherNamesOffset, 0);
+  builder.addFieldOffset(2, weatherNamesOffset, 0);
 };
 
 /**

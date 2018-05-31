@@ -11,15 +11,66 @@ table WeatherMap {
 	rate: WeatherRate;
 }
 
+table FishingSpot {
+	x: uint16;
+	z: uint16;
+	radius: uint16;
+	spotId: uint8;
+	regionId: uint8;
+	placeId: uint8;
+	spot_category: uint8;
+}
+
+table FishingItem {
+	itemId: uint16;
+	spots: [FishingSpot];
+}
+
 table DB {
+	fishingItems: [FishingItem];
 	weatherMaps: [WeatherMap];
 }
 
-/* root_type DB; */
-
 table TextDB {
+	itemNames: [string];
 	placeNames: [string];
 	weatherNames: [string];
 }
 
-/* root_type TextDB; */
+/*
+table EquipItem {
+	classJobCategory: uint8;
+	itemSeries: uint32;
+	baseParams: [uint8];
+	baseParamValues: [uint16];
+	materializeType: int8;
+	materiaSlotCount: int8;
+}
+
+table WeaponItem {
+	damage: uint16;
+	delay: uint16;
+}
+
+table Item {
+	name: uint16;
+	description: uint16;
+	icon: uint16;
+	itemLevel: uint16;
+	rarity: uint8;
+	itemUICategory: uint8;
+	itemSearchCategory: uint8;
+	equipSlotCategory: uint8;
+	priceMid: uint32;
+	priceLow: uint32;
+	isUnique: bool;
+	isUntradable: bool;
+	canBeHq: bool;
+	idDyeable: bool;
+	isCrestWorthy: bool;
+}
+
+table ItemDB {
+	items: [Item];
+}
+*/

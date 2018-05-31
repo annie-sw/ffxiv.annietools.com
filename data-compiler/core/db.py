@@ -67,4 +67,6 @@ class ExdRecord:
             return value
         if value_type.startswith('bit'):
             return bool(value)
+        if value_type == 'single' or value_type == 'double':
+            return float(value)
         return int(value)

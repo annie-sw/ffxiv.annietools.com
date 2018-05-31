@@ -11,6 +11,8 @@ selenium-debug.log
 /docs/
 /data
 
+/frontend/static/data/
+
 __pycache__/
 
 # Editor directories and files

@@ -4,6 +4,7 @@
 
     <nav>
       <router-link to="/">Index</router-link>
+      <router-link to="/FishingSpots">Fishing Spots</router-link>
       <router-link to="/WeatherForecast">Weather Forecast</router-link>
       <router-link to="/MiniCactpot">Mini Cactpot Solver</router-link>
     </nav>
