@@ -19,60 +19,68 @@ class FishingSpot(object):
         self._tab = flatbuffers.table.Table(buf, pos)
 
     # FishingSpot
-    def X(self):
+    def Level(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
     # FishingSpot
-    def Z(self):
+    def X(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
         return 0
 
     # FishingSpot
-    def Radius(self):
+    def Z(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
         return 0
 
     # FishingSpot
-    def SpotId(self):
+    def Radius(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+    # FishingSpot
+    def SpotId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
         return 0
 
     # FishingSpot
     def RegionId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
         return 0
 
     # FishingSpot
     def PlaceId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
         return 0
 
     # FishingSpot
     def SpotCategory(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
-def FishingSpotStart(builder): builder.StartObject(7)
-def FishingSpotAddX(builder, x): builder.PrependUint16Slot(0, x, 0)
-def FishingSpotAddZ(builder, z): builder.PrependUint16Slot(1, z, 0)
-def FishingSpotAddRadius(builder, radius): builder.PrependUint16Slot(2, radius, 0)
-def FishingSpotAddSpotId(builder, spotId): builder.PrependUint8Slot(3, spotId, 0)
-def FishingSpotAddRegionId(builder, regionId): builder.PrependUint8Slot(4, regionId, 0)
-def FishingSpotAddPlaceId(builder, placeId): builder.PrependUint8Slot(5, placeId, 0)
-def FishingSpotAddSpotCategory(builder, spotCategory): builder.PrependUint8Slot(6, spotCategory, 0)
+def FishingSpotStart(builder): builder.StartObject(8)
+def FishingSpotAddLevel(builder, level): builder.PrependUint8Slot(0, level, 0)
+def FishingSpotAddX(builder, x): builder.PrependUint16Slot(1, x, 0)
+def FishingSpotAddZ(builder, z): builder.PrependUint16Slot(2, z, 0)
+def FishingSpotAddRadius(builder, radius): builder.PrependUint16Slot(3, radius, 0)
+def FishingSpotAddSpotId(builder, spotId): builder.PrependUint16Slot(4, spotId, 0)
+def FishingSpotAddRegionId(builder, regionId): builder.PrependUint16Slot(5, regionId, 0)
+def FishingSpotAddPlaceId(builder, placeId): builder.PrependUint16Slot(6, placeId, 0)
+def FishingSpotAddSpotCategory(builder, spotCategory): builder.PrependUint8Slot(7, spotCategory, 0)
 def FishingSpotEnd(builder): return builder.EndObject()

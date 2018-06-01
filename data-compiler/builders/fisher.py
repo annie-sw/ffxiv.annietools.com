@@ -8,6 +8,7 @@ class FishingBuilder(BaseBuilder):
     def compile(self, store):
         fishing_spot_table = store.get_table('FishingSpot')
         territory_type_table = store.get_table('TerritoryType')
+        item_table = store.get_table('Item')
 
         fish_map = {}
         spot_map = {}
@@ -30,12 +31,16 @@ class FishingBuilder(BaseBuilder):
             item_ids = [fishing_spot.get_by_name('Item[{}]'.format(x)) for x in range(10)]
             item_ids = [x for x in item_ids if x is not 0]
 
+            if not item_ids:
+                continue
+
             region_id = territory.get_by_name('PlaceName{Region}')
             place_id = territory.get_by_name('PlaceName')
 
             store.place_name_ids |= set([spot_id, region_id, place_id])
 
             spot_map[fishing_spot.id] = dict(
+                    level=level,
                     x=x,
                     z=x,
                     radius=radius,
@@ -55,16 +60,12 @@ class FishingBuilder(BaseBuilder):
         self.item_map = fish_map
 
     def build(self, builder, store):
-        #  spots = sorted(self.spot_map.items(), lambda x: x[0])
-        #  spot_map = {k:i for i, (k, v) in enumerate(spots)}
         spot_map = {}
 
-        #  for spot in reversed(spots):
         spots = sorted(self.spot_map.items(), key=lambda x: x[0])
-        #  generated.Eorzea.DB.DBtartFishingSpotMapsVector(builder, len(spots))
         for spot_id, spot in reversed(spots):
-            #  print (spot)
             generated.Eorzea.FishingSpot.FishingSpotStart(builder)
+            generated.Eorzea.FishingSpot.FishingSpotAddLevel(builder, spot['level'])
             generated.Eorzea.FishingSpot.FishingSpotAddX(builder, spot['x'])
             generated.Eorzea.FishingSpot.FishingSpotAddZ(builder, spot['z'])
             generated.Eorzea.FishingSpot.FishingSpotAddRadius(builder, spot['radius'])

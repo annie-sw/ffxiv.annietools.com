@@ -22,14 +22,14 @@ class WeatherMap(object):
     def Region(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
         return 0
 
     # WeatherMap
     def Place(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
         return 0
 
     # WeatherMap
@@ -44,7 +44,7 @@ class WeatherMap(object):
         return None
 
 def WeatherMapStart(builder): builder.StartObject(3)
-def WeatherMapAddRegion(builder, region): builder.PrependUint8Slot(0, region, 0)
-def WeatherMapAddPlace(builder, place): builder.PrependUint8Slot(1, place, 0)
+def WeatherMapAddRegion(builder, region): builder.PrependUint16Slot(0, region, 0)
+def WeatherMapAddPlace(builder, place): builder.PrependUint16Slot(1, place, 0)
 def WeatherMapAddRate(builder, rate): builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(rate), 0)
 def WeatherMapEnd(builder): return builder.EndObject()

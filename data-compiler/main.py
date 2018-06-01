@@ -7,6 +7,7 @@ from core.builder import Store, BaseBuilder
 from builders.textdb import TextBuilder
 from builders.weather import WeatherRateBuilder
 from builders.treasure_hunt import TreasureMapBuilder
+from builders.gatherer import GatheringBuilder
 from builders.fisher import FishingBuilder
 
 import generated.Eorzea.DB
@@ -36,10 +37,12 @@ class DataBuilder(BaseBuilder):
         super(DataBuilder, self).__init__(*args, **kwargs)
         self.add_builder(WeatherRateBuilder(name='WeatherMaps'))
         #  data_builder.add_builder(TreasureMapBuilder(name='TreasureMaps'))
+        self.add_builder(GatheringBuilder(name='GatheringItems'))
         self.add_builder(FishingBuilder(name='FishingItems'))
 
     def build(self, builder, store, values):
         generated.Eorzea.DB.DBStart(builder)
+        generated.Eorzea.DB.DBAddGatheringItems(builder, values['GatheringItems'])
         generated.Eorzea.DB.DBAddFishingItems(builder, values['FishingItems'])
         generated.Eorzea.DB.DBAddWeatherMaps(builder, values['WeatherMaps'])
         return generated.Eorzea.DB.DBEnd(builder)

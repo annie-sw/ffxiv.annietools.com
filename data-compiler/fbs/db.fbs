@@ -6,18 +6,19 @@ table WeatherRate {
 }
 
 table WeatherMap {
-	region: uint8;
-	place: uint8;
+	region: uint16;
+	place: uint16;
 	rate: WeatherRate;
 }
 
 table FishingSpot {
+	level: uint8;
 	x: uint16;
 	z: uint16;
 	radius: uint16;
-	spotId: uint8;
-	regionId: uint8;
-	placeId: uint8;
+	spotId: uint16;
+	regionId: uint16;
+	placeId: uint16;
 	spot_category: uint8;
 }
 
@@ -26,7 +27,22 @@ table FishingItem {
 	spots: [FishingSpot];
 }
 
+table GatheringSpot {
+	level: uint8;
+	typeId: uint8;
+	spotId: uint16;
+	regionId: uint16;
+	placeId: uint16;
+	subCategoryId: uint16;
+}
+
+table GatheringItem {
+	itemId: uint16;
+	spots: [FishingSpot];
+}
+
 table DB {
+	gatheringItems: [GatheringItem];
 	fishingItems: [FishingItem];
 	weatherMaps: [WeatherMap];
 }
